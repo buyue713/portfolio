@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>卜越 · 作品集 2026</title>
+<meta name="description" content="卜越的个人作品集：语料整理、风格规范、数据对账与知识工程，6 个项目，每个都写清做了什么、怎么做、有什么意义。">
+<style>
+:root{
+  --ink:#1d1d1f;--ink-2:#6e6e73;--ink-3:#86868b;
+  --bg:#fff;--bg-alt:#f5f5f7;--soft:#f5f5f7;
+  --line:rgba(0,0,0,.16);--track:#e8e8ed;
+  --accent:#0071e3;--accent-ink:#0066cc;
+  --f:-apple-system,BlinkMacSystemFont,"SF Pro SC","SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --ease:cubic-bezier(.25,.1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);
+  font-size:17px;line-height:1.47;-webkit-font-smoothing:antialiased}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+h1,h2,h3{margin:0;font-weight:600}
+h1{font-size:56px;line-height:1.07;letter-spacing:0}
+h2{font-size:40px;line-height:1.08}
+h3{font-size:21px;line-height:1.33;letter-spacing:.011em}
+p{margin:0}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:99;height:48px;display:flex;align-items:center;
+  background:rgba(250,250,252,.82);backdrop-filter:saturate(1.8) blur(20px);
+  border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:12px;width:100%}
+.brand{font-size:14px;font-weight:600;letter-spacing:.012em;white-space:nowrap}
+.pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;font-size:14px;color:var(--ink-2);padding:5px 14px;border-radius:980px;
+  background:rgba(0,0,0,.04);white-space:nowrap}
+.pill.on{color:#fff;background:var(--ink)}
+
+/* bands */
+.band{padding:88px 0}
+.band--gray{background:var(--bg-alt)}
+.band--dark{background:#000;color:#f5f5f7}
+.band--dark a{color:#2997ff}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase;margin-bottom:12px}
+.lead{font-size:21px;line-height:1.33;letter-spacing:.007em;color:var(--ink-2);max-width:28em;margin-top:18px}
+
+/* hero */
+.hero{padding-top:72px;padding-bottom:88px}
+.hero h1{margin-bottom:6px}
+.facts{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:52px}
+.fact{grid-column:span 4;min-width:0}
+.fact .k{font-size:40px;line-height:1.05;font-weight:600;letter-spacing:0}
+.fact .c{font-size:14px;line-height:1.43;color:var(--ink-2);margin-top:6px}
+
+/* modules */
+.modgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.mod{grid-column:span 12;background:var(--soft);border-radius:28px;padding:28px 26px;min-width:0}
+.band--gray .mod{background:#fff}
+.mod__top{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-items:baseline;margin-bottom:16px}
+.mod__no{grid-column:span 1;font-size:14px;color:var(--ink-3);letter-spacing:.012em}
+.mod__head{grid-column:span 8;min-width:0}
+.mod__meta{grid-column:span 3;min-width:0;text-align:right;font-size:14px;color:var(--ink-2)}
+.mod__body{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.mod__text{grid-column:span 8;min-width:0}
+.mod__side{grid-column:span 4;min-width:0}
+.sub{font-size:14px;letter-spacing:.012em;color:var(--ink-3);margin-bottom:4px}
+.row{margin-bottom:14px}
+.row:last-child{margin-bottom:0}
+.row p{font-size:17px;line-height:1.47}
+.row p b{font-weight:600}
+.big{font-size:40px;line-height:1.05;font-weight:600;letter-spacing:0}
+.sidecap{font-size:14px;line-height:1.43;color:var(--ink-2);margin-top:6px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:12px;letter-spacing:.012em;color:var(--ink-2);border:1px solid var(--line);
+  border-radius:980px;padding:3px 10px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:40px}
+.step{grid-column:span 3;min-width:0}
+.step .n{font-size:12px;letter-spacing:.12em;color:var(--ink-3)}
+.step h3{font-size:17px;margin:8px 0 6px}
+.step p{font-size:14px;line-height:1.43;color:var(--ink-2)}
+
+/* closer */
+.closer{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-items:start}
+.closer .l{grid-column:span 7;min-width:0}
+.closer .r{grid-column:span 5;min-width:0}
+.closer .r p{font-size:17px;line-height:1.6}
+.cta{display:inline-block;background:var(--accent);color:#fff!important;border-radius:980px;
+  padding:10px 20px;font-size:14px;font-weight:600;text-decoration:none!important}
+.acc{color:var(--accent-ink)}
+.br-m{display:none}
+.foot{padding:28px 0 40px;font-size:12px;line-height:1.43;color:var(--ink-3)}
+
+@media(max-width:1068px){
+  .fact{grid-column:span 6}
+  .step{grid-column:span 6}
+  .mod__head{grid-column:span 7}
+  .mod__meta{grid-column:span 4}
+  .mod__text{grid-column:span 12}
+  .mod__side{grid-column:span 12;margin-top:12px}
+  .closer .l,.closer .r{grid-column:span 12}
+}
+@media(max-width:734px){
+  body{font-size:17px}
+  .band{padding:56px 0}
+  .hero{padding-top:40px;padding-bottom:56px}
+  .fact,.step{grid-column:span 12}
+  .fact{display:flex;align-items:baseline;gap:12px}
+  .fact .c{margin-top:0}
+  .mod{padding:22px 18px;border-radius:28px}
+  .mod__no{grid-column:span 12}
+  .mod__head{grid-column:span 12}
+  .mod__meta{grid-column:span 12;text-align:left;margin-top:2px}
+  .br-m{display:inline}
+}
+@media(prefers-color-scheme:dark){
+  :root{--ink:#f5f5f7;--ink-2:#a1a1a6;--ink-3:#86868b;--bg:#000;--bg-alt:#0b0b0c;--soft:#0b0b0c;
+    --line:rgba(255,255,255,.16);--track:#2c2c2e;--accent:#2997ff;--accent-ink:#2997ff}
+  .nav{background:rgba(22,22,23,.82)}
+  .pill{background:rgba(255,255,255,.08)}
+  .pill.on{background:#f5f5f7;color:#1d1d1f}
+  .band--gray .mod{background:#1d1d1f}
+  .band--dark{background:#000}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* print: A4 附件版 */
+@page{size:A4;margin:14mm 13mm}
+@media print{
+  :root{--ink:#1d1d1f;--ink-2:#55555a;--ink-3:#6e6e73;--bg:#fff;--bg-alt:#f5f5f7;--soft:#f5f5f7;
+    --line:rgba(0,0,0,.18)}
+  body{font-size:9.2pt;line-height:1.42;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .nav,.foot{display:none}
+  .band{padding:0 0 4.5mm;break-inside:auto}
+  .band--gray{background:transparent}
+  .band--dark{background:#fff;color:var(--ink)}
+  .hero{padding-top:0;padding-bottom:4mm}
+  h1{font-size:22pt}
+  h2{font-size:13pt}
+  h3{font-size:10.2pt}
+  .lead{font-size:9.2pt;margin-top:2mm;max-width:34em}
+  .eyebrow{margin-bottom:2mm}
+  .facts{margin-top:4mm;gap:4mm;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .fact{grid-column:span 1!important}
+  .fact .k{font-size:15pt}
+  .fact .c,.mod__meta,.sub,.sidecap,.tag,.step p{font-size:7.6pt}
+  .modgrid{display:block;gap:0}
+  .mod{background:#fff!important;border:1px solid var(--line);border-radius:6px;padding:2.6mm 3.4mm;
+    break-inside:avoid;page-break-inside:avoid;margin-bottom:2.4mm}
+  .mod__top{margin-bottom:2mm}
+  .mod__body{gap:0}
+  .row{margin-bottom:1.4mm}
+  .row p,.closer .r p{font-size:8.6pt;line-height:1.44}
+  .big{font-size:13pt}
+  .acc{color:var(--accent-ink)}
+  .tags{margin-top:1.6mm}
+  .step{grid-column:span 6}
+  .step h3{font-size:10pt;margin:1mm 0 1mm}
+  .steps{margin-top:2mm;gap:2mm}
+  #contact{break-inside:avoid;page-break-inside:avoid}
+  .closer{display:grid;grid-template-columns:1.35fr 1fr;gap:6mm}
+  .closer .l{grid-column:span 1!important}
+  .closer .r{grid-column:span 1!important}
+  .closer .r p{margin-bottom:1.6mm}
+  .cta{background:#fff!important;color:var(--ink)!important;border:1px solid var(--line);padding:1.4mm 3mm}
+}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="wrap">
+  <span class="brand">卜越 · 作品集 2026</span>
+  <nav class="pills">
+    <a class="pill on" href="#work">作品</a>
+    <a class="pill" href="#method">方法</a>
+    <a class="pill" href="#contact">联系</a>
+  </nav>
+</div></div>
+
+<header class="band hero">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio · 2026.11 · 个人项目</div>
+    <h1>卜越</h1>
+    <p class="lead">哈尔滨商业大学 · 食品科学与工程 · 2027 届。我把零散的聊天、账单和页面，整理成能复核的结论。下面 6 个项目按与本岗位的适配度和工程量排序，每个都写清做了什么、怎么做、有什么意义。</p>
+    <div class="facts">
+      <div class="fact"><div><div class="k num">83,371</div><div class="c">条消息清洗成用语画像</div></div></div>
+      <div class="fact"><div><div class="k num">4,568</div><div class="c">笔账单对到 17 元误差</div></div></div>
+      <div class="fact"><div><div class="k num">2,721</div><div class="c">行零依赖网关代码</div></div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="band band--gray" id="work">
+  <div class="wrap">
+    <div class="eyebrow">作品 · 6 个 · 按适配度与工程量排序</div>
+    <h2>能被打开、<br class="br-m">能被复算的六件事</h2>
+
+    <div class="modgrid" style="margin-top:40px">
+
+      <article class="mod">
+        <div class="mod__top">
+          <div class="mod__no num">01</div>
+          <div class="mod__head"><h3>微信语料与用语画像</h3><div class="sub">个人项目 · 2026.10 · 5 年 9 个月记录</div></div>
+          <div class="mod__meta">83,371 条 / 4,822 段 / 13 节画像</div>
+        </div>
+        <div class="mod__body">
+          <div class="mod__text">
+            <div class="row"><div class="sub">做了什么</div><p>解开微信 4.x 的本地加密库，把 5 年 9 个月的聊天记录整理成可统计的语料，并据此写出 10 人的用语画像与一份自我画像。</p></div>
+            <div class="row"><div class="sub">怎么做</div><p>按 SQLCipher 变体解库（AES-256-CBC、页 4096、每页保留 80 字节）。全量 83,371 条看结构，取 47,273 条文字消息，按长度、标点、语气词、时段四类统计；长文本单独抽出，逐条区分本人所写与转发、AI 生成。</p></div>
+            <div class="row"><div class="sub">有什么意义</div><p>把「他说话就是这个味儿」变成可复核的指标：中位 7 字、67% 的消息不超 10 字、92% 不以标点结尾、问号密度只有工作语域的 1/16。风格不再靠感觉，而能写成规则、交给别人复算。</p></div>
+          </div>
+          <div class="mod__side">
+            <div class="big num">83,371</div>
+            <div class="sidecap">条消息里，47,273 条文字消息进入统计；4,822 段会话、3,680 个活跃日。</div>
+            <div class="tags"><span class="tag">语料清洗</span><span class="tag">文本计量</span><span class="tag">画像</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod">
+        <div class="mod__top">
+          <div class="mod__no num">02</div>
+          <div class="mod__head"><h3>苹果官网实测与设计规范</h3><div class="sub">个人项目 · 2026.10 · 1.1 万字解析</div></div>
+          <div class="mod__meta">12 条硬规则 / 20 项自检</div>
+        </div>
+        <div class="mod__body">
+          <div class="mod__text">
+            <div class="row"><div class="sub">做了什么</div><p>把「苹果好看」拆成能直接执行的规范：字阶、间距、圆角、颜色与排布约束，而不是一句审美评价。</p></div>
+            <div class="row"><div class="sub">怎么做</div><p>用 CDP 打开 apple.com.cn，量页面级与字阶级数据（按钮高度、圆角、砖块高度、段落间距），截图逐屏对照；整理成 12 条硬规则、可直接引用的 CSS token、3 种页面骨架与 20 项自检。</p></div>
+            <div class="row"><div class="sub">有什么意义</div><p>风格指南的写法有共同结构：先量、再归纳取向、最后落成能逐条检查的条目。同样的流程可以搬到人设与文风规范上——先取样例，再定指标，最后给判定标准。</p></div>
+          </div>
+          <div class="mod__side">
+            <div class="big num">12</div>
+            <div class="sidecap">条硬规则，每条都能落到一个可检查的数值区间；配套 20 项发布前自检。</div>
+            <div class="tags"><span class="tag">规范</span><span class="tag">实测</span><span class="tag">设计 token</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod">
+        <div class="mod__top">
+          <div class="mod__no num">03</div>
+          <div class="mod__head"><h3>三年消费的四层对账</h3><div class="sub">个人项目 · 2023–2026 · 7 个平台</div></div>
+          <div class="mod__meta">4,568 笔 / 闭合误差 17 元</div>
+        </div>
+        <div class="mod__body">
+          <div class="mod__text">
+            <div class="row"><div class="sub">做了什么</div><p>各平台账单口径不一，钱到底花在哪一直说不清。我把它们对齐到一张以银行卡为总账的表上。</p></div>
+            <div class="row"><div class="sub">怎么做</div><p>四层对账：银行卡管总量，支付平台管「花在哪」，订单明细做校验，每一笔差额都追到原因。初版漏算 26%（24,269 元卡直付从没进过支付平台），补进来后重算全部指标。</p></div>
+            <div class="row"><div class="sub">有什么意义</div><p>167,647 元的账，闭合误差 17 元，0.01%。口径不一致时先解释差额，解释不了就写「不知道」——这条纪律后来用在每一次数据交付里。</p></div>
+          </div>
+          <div class="mod__side">
+            <div class="big num">0.01%</div>
+            <div class="sidecap">账本闭合误差。四层口径互相验证，差额逐笔解释。</div>
+            <div class="tags"><span class="tag">对账</span><span class="tag">口径设计</span><span class="tag">可视化</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod">
+        <div class="mod__top">
+          <div class="mod__no num">04</div>
+          <div class="mod__head"><h3>526 页课件做成知识库</h3><div class="sub">个人项目 · 2026.11 · 食品工厂设计</div></div>
+          <div class="mod__meta">526 页 → 18 张卡 → 1 个入口</div>
+        </div>
+        <div class="mod__body">
+          <div class="mod__text">
+            <div class="row"><div class="sub">做了什么</div><p>复习时翻 526 页 PDF 太慢，我把整本课件做成能直接查的知识库。</p></div>
+            <div class="row"><div class="sub">怎么做</div><p>逐页转录，按厂址选择、工艺计算、设备选型、总平面、卫生规范五类归并，写 18 张知识卡与速查表，封装成一个可调用的查询入口。</p></div>
+            <div class="row"><div class="sub">有什么意义</div><p>1,087 个文件、1.9 MB，查一个知识点从翻页变成问一句。结构化不是排版，是先决定按哪个维度切——这个决定错了，卡写得再漂亮也没用。</p></div>
+          </div>
+          <div class="mod__side">
+            <div class="big num">18</div>
+            <div class="sidecap">张知识卡覆盖 526 页内容；同一套方法复用到《食品新产品开发》，导出 105 页 PDF。</div>
+            <div class="tags"><span class="tag">知识工程</span><span class="tag">结构化</span><span class="tag">检索</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod">
+        <div class="mod__top">
+          <div class="mod__no num">05</div>
+          <div class="mod__head"><h3>57 张照片变成 105 页复习册</h3><div class="sub">个人项目 · 2026.6 · 食品新产品开发</div></div>
+          <div class="mod__meta">57 张 → 54 页转录 → 105 页</div>
+        </div>
+        <div class="mod__body">
+          <div class="mod__text">
+            <div class="row"><div class="sub">做了什么</div><p>期末只有手机拍的 57 张课件照片，看不清、搜不到、也没法打印。我把它做成一套能打印的复习资料。</p></div>
+            <div class="row"><div class="sub">怎么做</div><p>去重后 54 页全部转录，按概念重组成 8 个概念页、2 个实体页、1 个流程页、8 个考试页；没拍到的页面按通用教材补，并逐条标注存疑。</p></div>
+            <div class="row"><div class="sub">有什么意义</div><p>105 页 A4 PDF、6.8 MB 可编辑 DOCX、119 KB 单文件 HTML，加 7 个能重跑的脚本。缺口标出来而不是糊过去，是这类工作唯一可信的做法。</p></div>
+          </div>
+          <div class="mod__side">
+            <div class="big num">105</div>
+            <div class="sidecap">页可打印复习册，缺页处逐条标注来源与不确定项。</div>
+            <div class="tags"><span class="tag">转录</span><span class="tag">标注规范</span><span class="tag">排版装配</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod">
+        <div class="mod__top">
+          <div class="mod__no num">06</div>
+          <div class="mod__head"><h3>18 家网站界面横评</h3><div class="sub">个人项目 · 2026.10 · 4 种设计取向</div></div>
+          <div class="mod__meta">18 个站点 / 7 个脚本 / 3 档验收</div>
+        </div>
+        <div class="mod__body">
+          <div class="mod__text">
+            <div class="row"><div class="sub">做了什么</div><p>「哪家设计好」平时只能靠感觉。我把 18 个站点的首屏放到同一套口径下量。</p></div>
+            <div class="row"><div class="sub">怎么做</div><p>固定视口与拍摄时间抓首屏，统计每页的字号、圆角、背景色种类；写 7 个脚本做抓取、补拍、空白检测与三档屏宽验收，逐条记录视频首屏、登录墙这类坑。</p></div>
+            <div class="row"><div class="sub">有什么意义</div><p>结论是没有「苹果级」，只有影像、排版、密度、系统四种取向；Ant Design 首屏 9 种字号，Carbon 全站 1 种圆角。评测要能指到具体参数，否则只是偏好。</p></div>
+          </div>
+          <div class="mod__side">
+            <div class="big num">18</div>
+            <div class="sidecap">个站点、4 种取向、1 份选型矩阵；三档屏宽均无横向溢出。</div>
+            <div class="tags"><span class="tag">抓取</span><span class="tag">指标化</span><span class="tag">验收</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod">
+        <div class="mod__top">
+          <div class="mod__no num">附录</div>
+          <div class="mod__head"><h3>工程底子：一块加密盘放到外网</h3><div class="sub">个人项目 · 2026.9 · 自建系统</div></div>
+          <div class="mod__meta">2,721 行 / 0 个公网端口</div>
+        </div>
+        <div class="mod__body">
+          <div class="mod__text">
+            <div class="row"><div class="sub">做了什么</div><p>想在外面取家里的文件，又不想把东西交给网盘，于是自己搭了一套：手机经 Tailscale 打开网关，验证后解锁 VeraCrypt 加密卷，再交给媒体库播放。</p></div>
+            <div class="row"><div class="sub">怎么做</div><p>2,721 行零依赖 Python 网关加 3 个浏览器页面：口令只存 PBKDF2 哈希、令牌 12 小时轮换、失败按 IP 退避、文件路径锁死在卷内。整机换电脑时改 5 层挂接把它搬过去。</p></div>
+            <div class="row"><div class="sub">有什么意义</div><p>200 GiB 主卷加 128 GiB 旧卷、296 部影片，整机迁移后仍在外网可用，0 个公网端口。上面那些脚本能力，都是这么一行行写出来的。</p></div>
+          </div>
+          <div class="mod__side">
+            <div class="big num">0</div>
+            <div class="sidecap">个公网端口，全部走组网与本地鉴权。</div>
+            <div class="tags"><span class="tag">Python</span><span class="tag">鉴权</span><span class="tag">迁移</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="band" id="method">
+  <div class="wrap">
+    <div class="eyebrow">方法 · 四步</div>
+    <h2>顺序固定，换个题目照用</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>取数</h3><p>能拿原始数据就不拿截图；拿不到就实测，并写清哪部分取不到。</p></div>
+      <div class="step"><div class="n">02</div><h3>对账</h3><p>让两套口径互相验，差额必须解释；解释不了就写「不知道」。</p></div>
+      <div class="step"><div class="n">03</div><h3>成稿</h3><p>先给结论再给拆解，数字与结论分开写，方便别人复核。</p></div>
+      <div class="step"><div class="n">04</div><h3>归档</h3><p>一个项目一个文件夹，带说明、复现脚本与回滚清单，下次能接着做。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">联系</div>
+    <div class="closer">
+      <div class="l">
+        <h2>在找一个把事做完、并且能被复核的人</h2>
+        <p class="lead" style="margin-top:18px;color:#a1a1a6">食品专业出身，但这些都不是课上教的：账单是自己一笔笔对的，界面是自己一页页量的，工具是自己写出来用的。全部项目为个人独立完成，数字来自原始账单、公开页面实测与项目归档记录。</p>
+      </div>
+      <div class="r">
+        <p><a class="cta" href="mailto:2692751936@qq.com">发邮件给我</a></p>
+        <p class="num" style="margin-top:14px">2692751936@qq.com</p>
+        <p class="num">133 4713 0845</p>
+        <p>哈尔滨 · 可即刻到岗，每周 4-5 天，实习 6 个月以上</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="foot"><div class="wrap">卜越 · 作品集 2026.11 · 页面零依赖、无第三方脚本与字体；数据图由原始统计结果生成。</div></div>
+
+</body>
+</html>
